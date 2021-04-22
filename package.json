@@ -1,0 +1,38 @@
+{
+  "name": "mobile-bench",
+  "version": "1.0.0",
+  "description": "Mobile automation training project",
+  "main": "index.js",
+  "scripts": {
+    "pretest:android": "echo 'downloading apk'",
+    "test:android": "wdio wdio.conf.android.js",
+    "test:ios": "wdio run wdio.conf.ios.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ALegchilov/mobile-bench.git"
+  },
+  "keywords": [],
+  "author": "Alex Legchilov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ALegchilov/mobile-bench/issues"
+  },
+  "homepage": "https://github.com/ALegchilov/mobile-bench#readme",
+  "dependencies": {
+    "@wdio/cli": "^7.5.1",
+    "appium": "^1.20.2",
+    "fs-extra": "^9.1.0",
+    "nvm": "0.0.4",
+    "webdriverio": "^7.5.1"
+  },
+  "devDependencies": {
+    "@wdio/appium-service": "^7.5.0",
+    "@wdio/local-runner": "^7.5.1",
+    "@wdio/mocha-framework": "^7.4.6",
+    "@wdio/spec-reporter": "^7.4.3",
+    "axios": "^0.21.1",
+    "chromedriver": "^90.0.0",
+    "wdio-chromedriver-service": "^7.0.0"
+  }
+}
