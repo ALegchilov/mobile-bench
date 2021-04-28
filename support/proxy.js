@@ -3,7 +3,7 @@
  * @param {Object} page page object to be processed
  * @return {Object} page object with modified getters
  */
-function proxifyPage(page) {
+function proxifyElement(page) {
     return new Proxy(page, {
         get(target, prop) {
             return typeof target[prop] === 'object'
@@ -13,4 +13,4 @@ function proxifyPage(page) {
     });
 }
 
-module.exports = proxifyPage;
+module.exports = proxifyElement;

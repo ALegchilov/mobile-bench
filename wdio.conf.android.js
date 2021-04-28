@@ -2,7 +2,7 @@ const path = require('path');
 
 exports.config = {
 
-    specs: ['./specs/smoke.js'],
+    specs: ['./specs/**.js'],
 
     capabilities: [
         {

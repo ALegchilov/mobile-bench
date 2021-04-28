@@ -1,3 +1,5 @@
+const credentialsManager = require('../support/credentials.manager')
+
 class LoginPage {
     get inputUsername() {
         return {android: '~login-username-input', ios: ''}
@@ -12,8 +14,8 @@ class LoginPage {
     }
 
     async login() {
-        await (await this.inputUsername).setValue('ed-domestic@medifastinc.com');
-        await (await this.inputPassword).setValue('Medifast2017**');
+        await (await this.inputUsername).setValue(credentialsManager["Jessee Baldwin"].login);
+        await (await this.inputPassword).setValue(credentialsManager["Jessee Baldwin"].password);
         await (await this.buttonLogin).click();
         await (await this.buttonLogin).waitForExist({reverse: true});
     }

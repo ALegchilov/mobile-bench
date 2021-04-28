@@ -15,13 +15,10 @@ async function swipeElement(element, direction) {
             break;
         case 'left':
             throw new Error("Not yet implemented");
-            break;
         case 'up':
             throw new Error("Not yet implemented");
-            break;
         case 'down':
             throw new Error("Not yet implemented");
-            break;
         default:
             throw new Error("Illegal direction passed");
     }
@@ -31,14 +28,11 @@ async function swipeToElement(element, direction, limit = 3) {
     const screenResolution = await browser.getWindowSize();
     const centerPoint = {x: screenResolution.width / 2, y: screenResolution.height / 2};
     let swipeCount = 0;
-    let status;
     switch (direction) {
-        case 'left':
-            throw new Error("Not yet implemented");
-            break;
         case 'right':
             throw new Error("Not yet implemented");
-            break;
+        case 'left':
+            throw new Error("Not yet implemented");
         case 'down':
             while (!await element.isDisplayed() && swipeCount < limit) {
                 await browser.touchAction([
