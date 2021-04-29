@@ -4,7 +4,7 @@
   "description": "Mobile automation training project",
   "main": "index.js",
   "scripts": {
-    "pretest:android": "echo 'downloading apk'",
+    "pretest:android": "node prepare.apk.js",
     "test:android": "wdio wdio.conf.android.js",
     "test:ios": "wdio run wdio.conf.ios.js"
   },
