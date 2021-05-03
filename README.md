@@ -5,10 +5,10 @@ Training project to get familiar with mobile automation based on WebdriverIO and
 Getting Started
 -------------
 * Clone the project
-* Intall dependencies `npm install`
+* Install dependencies `npm install`
 * Setup Android Studio
 * Create AVD Pixel_2_API_29
-* Put credentials.manager.js to support folder
+* Put credentials.manager.js into the support folder
 
 Steps to run automation
 -------------

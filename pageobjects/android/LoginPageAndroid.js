@@ -1,16 +1,16 @@
-const credentialsManager = require('../support/credentials.manager')
+const credentialsManager = require('../../support/credentials.manager');
 
-class LoginPage {
+class LoginPageAndroid {
     get inputUsername() {
-        return {android: '~login-username-input', ios: ''}
+        return $('~login-username-input');
     };
 
     get inputPassword() {
-        return {android: '~login-password-input', ios: 'dummie'}
+        return $('~login-password-input');
     };
 
     get buttonLogin() {
-        return {android: '~login-login-button', ios: 'dummie'}
+        return $('~login-login-button');
     }
 
     async login() {
@@ -21,4 +21,4 @@ class LoginPage {
     }
 }
 
-module.exports = LoginPage;
+module.exports = LoginPageAndroid;

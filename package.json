@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "pretest:android": "node prepare.apk.js",
-    "test:android": "wdio wdio.conf.android.js",
-    "test:ios": "wdio run wdio.conf.ios.js"
+    "test:android": "wdio wdio.conf.android.js android",
+    "test:ios": "wdio run wdio.conf.ios.js ios"
   },
   "repository": {
     "type": "git",

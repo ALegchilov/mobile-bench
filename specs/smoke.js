@@ -1,19 +1,8 @@
-const LoginPage = require('../pageobjects/LoginPage');
-const DashboardPage = require('../pageobjects/DashboardPage');
-const RankProgressCard = require('../pageobjects/elements/RankProgressCard')
-const proxifyElement = require('../support/proxy');
 const {swipeElement, swipeToElement} = require('../helpers/swipe.helpers')
-const CoachesSection = require('../pageobjects/elements/CoachesSection');
-const TeamsOverview = require('../pageobjects/elements/TeamsOverview');
-const SlidingCard = require('../pageobjects/elements/SlidingCard');
-const loginPage = proxifyElement(new LoginPage());
-const dashboardPage = proxifyElement(new DashboardPage());
-const rankProgressCard = proxifyElement(new RankProgressCard());
-const coachesSection = proxifyElement(new CoachesSection());
-const teamsOverview = proxifyElement(new TeamsOverview());
-const frontLineQualifyingVolumeCard = proxifyElement(new SlidingCard('Frontline Qualifying Volume','FQV-card'));
-const generationOVolumeCard = proxifyElement(new SlidingCard('Generation 0 Volume','G0V-card'));
-const totalGenerationVolumeCard = proxifyElement(new SlidingCard('Total Generation Volume','TGV-card'));
+const mobileObjectsFactory = require('../support/MobileObjectsFactory');
+
+const loginPage = mobileObjectsFactory.initObject('loginPage');
+const dashboardPage = mobileObjectsFactory.initObject('dashboardPage');
 
 const greetingPattern = /Good (morning|afternoon|evening),/;
 
@@ -30,31 +19,32 @@ describe('Verify presence of elements', () => {
     });
 
     it('should display rank progress card', async () => {
-        const rankProgressCardElement = await rankProgressCard.baseElement;
+        const rankProgressCardElement = await dashboardPage.rankProgressCard.baseElement;
         await rankProgressCardElement.waitForExist();
-        expect(rankProgressCard).toBeVisible();
+        expect(rankProgressCardElement).toBeVisible();
     });
 
     it('should display horizontal scroll with 3 cards: Frontline Qualifying Volume, Generation 0 Volume, Total Generation Volume', async () => {
-        const frontlineQualifyingVolumeCard = await frontLineQualifyingVolumeCard.cardTitle
+        const frontlineQualifyingVolumeCard = await dashboardPage.frontLineQualifyingVolumeCard.baseElement;
         await frontlineQualifyingVolumeCard.waitForExist();
-        const generationOVolumeCardTitle = await generationOVolumeCard.cardTitle;
-        const totalGenerationVolumeCardTitle = await totalGenerationVolumeCard.cardTitle;
+        const generationOVolumeCardTitle = await dashboardPage.generationOVolumeCard.cardTitle;
+        const generationOVolumeCard = await dashboardPage.generationOVolumeCard.baseElement;
+        const totalGenerationVolumeCardTitle = await dashboardPage.totalGenerationVolumeCard.cardTitle;
         expect(frontlineQualifyingVolumeCard).toBeVisible();
         await swipeElement(frontlineQualifyingVolumeCard, 'right');
         expect(generationOVolumeCardTitle).toBeVisible();
-        await swipeElement(generationOVolumeCardTitle, 'right');
-        expect().toBeVisible(totalGenerationVolumeCardTitle);
+        await swipeElement(generationOVolumeCard, 'right');
+        expect(totalGenerationVolumeCardTitle).toBeVisible();
     });
 
     it('should display Coaches section', async () => {
-        const coachesSectionElement = await coachesSection.baseElement;
+        const coachesSectionElement = await dashboardPage.coachesSection.baseElement;
         await swipeToElement(coachesSectionElement, 'down');
         expect(coachesSectionElement).toBeVisible();
     });
 
     it('should display Teams Overview section', async () => {
-        const teamsOverviewSection = await teamsOverview.baseElement;
+        const teamsOverviewSection = await dashboardPage.teamsOverviewSection.baseElement;
         await swipeToElement(teamsOverviewSection, 'down');
         expect(teamsOverviewSection).toBeVisible();
     });
