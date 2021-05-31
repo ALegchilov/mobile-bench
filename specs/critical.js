@@ -1,7 +1,6 @@
 const MobileObjectsFactory = require('../support/MobileObjectsFactory');
 const loginPage = MobileObjectsFactory.initObject('loginPage');
 const dashboardPage = MobileObjectsFactory.initObject('dashboardPage');
-
 const {swipeElement, swipeToElement} = require('../helpers/swipe.helpers');
 
 const naturalNumberPattern = /\d+/;
@@ -31,7 +30,7 @@ describe('Verify elements structure', () => {
             expect(await (await card.projectedThisMonthTitle).getText()).toEqual('Projected This Month');
             expect(await (await card.projectedThisMonthValue).getText()).toMatch(naturalNumberPattern);
             expect(await (await card.lastMonthTotalTitle).getText()).toMatch(/Last Month \(\w+\) Total/);
-            expect(await (await card.lastMonthTotalValue).getText()).toMatch(commaSeparatedNumberPattern);
+            expect(await (await card.lastMonthTotalValue).getText()).toMatch(naturalNumberPattern);
             expect(await (await card.sameTimeLastMonthTitle).getText()).toMatch('Same Time Last Month');
             expect(await (await card.sameTimeLastMonthValue).getText()).toEqual('Coming soon')
             await swipeElement(await card.cardTitle, 'right');
@@ -40,7 +39,7 @@ describe('Verify elements structure', () => {
     it('should display Coaches section elements', async () => {
         const coachesSection = dashboardPage.coachesSection;
         const coachesSectionTitle = await coachesSection.cardTitle;
-        await swipeToElement(coachesSectionTitle, 'down');
+        await swipeToElement(await coachesSection.allOrganizationCoachesTitle.title, 'down');
         expect(await coachesSectionTitle.getText()).toEqual('Coaches');
         expect(await coachesSection.infoIcon).toBeVisible();
         expect(await (await coachesSection.newFrontlineCoaches.title).getText()).toEqual('New Frontline Coaches');
@@ -52,9 +51,9 @@ describe('Verify elements structure', () => {
         expect(await (await coachesSection.allGenerationOCoachesValue.title).getText()).toEqual('All Generation 0 Coaches');
         expect(await (await coachesSection.allGenerationOCoachesValue.value).getText()).toMatch(naturalNumberPattern);
         expect(await (await coachesSection.newOrganizationCoaches.title).getText()).toEqual('New Organization Coaches');
-        expect(await (await coachesSection.newOrganizationCoaches.title).getText()).toMatch(naturalNumberPattern);
+        expect(await (await coachesSection.newOrganizationCoaches.value).getText()).toMatch(naturalNumberPattern);
         expect(await (await coachesSection.allOrganizationCoachesTitle.title).getText()).toEqual('All Organization Coaches');
-        expect(await (await coachesSection.allOrganizationCoachesTitle.title).getText()).toMatch(naturalNumberPattern);
+        expect(await (await coachesSection.allOrganizationCoachesTitle.value).getText()).toMatch(naturalNumberPattern);
     });
 
     it('should display Teams Overview section elements', async () => {
@@ -69,7 +68,7 @@ describe('Verify elements structure', () => {
         expect(await (await teamsOverviewSection.executiveDirectorTeams.value).getText()).toMatch(naturalNumberPattern);
         expect(await (await teamsOverviewSection.fibcTeams.title).getText()).toEqual('FIBC Teams');
         expect(await (await teamsOverviewSection.fibcTeams.value).getText()).toMatch(naturalNumberPattern);
-        expect(await (await teamsOverviewSection.fibcTeams.title).getText()).toEqual('FIBL Teams');
-        expect(await (await teamsOverviewSection.fibcTeams.value).getText()).toMatch(naturalNumberPattern);
+        expect(await (await teamsOverviewSection.fiblTeams.title).getText()).toEqual('FIBL Teams');
+        expect(await (await teamsOverviewSection.fiblTeams.value).getText()).toMatch(naturalNumberPattern);
     });
 });

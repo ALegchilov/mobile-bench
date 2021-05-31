@@ -1,5 +1,5 @@
-const titleElement = '/android.widget.TextView[@content-desc="metric-title"';
-const valueElement = '/android.widget.TextView[@content-desc="metric-value"';
+const titleElement = '/android.widget.TextView[@content-desc="metric-title"]';
+const valueElement = '/android.widget.TextView[@content-desc="metric-value"]';
 
 class MetricWidget {
     constructor(metricName) {

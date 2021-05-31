@@ -12,5 +12,6 @@ Getting Started
 
 Steps to run automation
 -------------
-* Execute Pixel_2_API_29.bat sell script from project root folder to lauch virtual device
-* Run node `test:android` script
+* Run npm `test:android` script
+
+Appium server AVD are started automatically
