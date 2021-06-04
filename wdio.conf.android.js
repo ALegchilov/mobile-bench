@@ -1,5 +1,6 @@
 const path = require('path');
 const {exec} = require('child_process');
+const os = require('os');
 
 exports.config = {
 
@@ -110,8 +111,9 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      */
     onPrepare: function (config, capabilities) {
-        setTimeout(()=>{}, 6000);
-        const child = exec('emulator -avd Pixel_2_API_29', (error, stdout, stderr) => {
+        const runCommand = os.version().includes('Darwin') ? `/Users/${os.userInfo().username}/Library/Android/sdk/emulator/emulator` : 'emulator';
+        const device = ' -avd Pixel_2_API_29';
+        const child = exec(runCommand + device, (error, stdout, stderr) => {
             if (error) {
                 return console.log(`error: ${error.message}`);
             }

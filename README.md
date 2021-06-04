@@ -14,4 +14,4 @@ Steps to run automation
 -------------
 * Run npm `test:android` script
 
-Appium server AVD are started automatically
+Appium server and AVD are started automatically

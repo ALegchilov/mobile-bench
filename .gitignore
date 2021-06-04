@@ -108,3 +108,6 @@ dist
 
 # test app
 app/
+
+# macOS files
+.DS_Store

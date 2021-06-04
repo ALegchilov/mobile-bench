@@ -13,7 +13,7 @@ async function downloadApk() {
     const response = await axios.get(DOWNLOAD_APK_PATH);
     const confirmationPath = response.data.match(/"(\/uc?.+?)"/)[1].replace(/&amp;/g, '&');
     const cookies = response.headers["set-cookie"][0]
-    console.log('Downloading APK. Download may take up to 3 minutes')
+    console.log('Downloading APK. The process may take up to 3 minutes')
     console.log(GOOGLE_DRIVE_PATH + confirmationPath);
     const {data} = await axios.request({
         url: GOOGLE_DRIVE_PATH + confirmationPath,
@@ -28,6 +28,9 @@ async function downloadApk() {
 
 fse.ensureDir(DIR).then(() => {
     if (!fs.existsSync(apkFilePath)) {
-        downloadApk().then(apk => fs.writeFileSync(apkFilePath, apk));
+        downloadApk().then(apk => {
+            console.log(`Downloading completed. File size: ${(Buffer.byteLength(apk) / 1048576).toFixed(2)} MB`);
+            fs.writeFileSync(apkFilePath, apk);
+        });
     }
 });
